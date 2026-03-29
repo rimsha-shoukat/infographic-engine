@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated data story</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/index.js"></script>
+</head>
+
+<body class="w-full h-auto bg-black">
+    <!-- top navbar -->
+    <nav class="w-full h-auto flex flex-row items-center justify-between p-3 border-b border-b-white/50 bg-[#2e2e2c]">
+        <div class="flex flex-row gap-2 items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 20 20" class="fill-current">
+                <rect width="8" height="8" x="2" y="2" rx="2" ry="2" fill="#6963a6"></rect>
+                <rect width="8" height="8" x="12" y="2" rx="2" ry="2" fill="#8884b0"></rect>
+                <rect width="8" height="8" x="12" y="12" rx="2" ry="2" fill="#9e9cb8"></rect>
+                <rect width="8" height="8" x="2" y="12" rx="2" ry="2" fill="#8884b0"></rect>
+            </svg>
+            <h1 class="text-md font-semibold">Infograph</h1>
+        </div>
+        <a href="/">
+            <button
+                class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">
+                <svg width="10" height="10" viewBox="0 0 20 20">
+                    <line x1="2" y1="10" x2="10" y2="2" stroke="white" stroke-width="4" stroke-linecap="round"
+                        fill="none">
+                    </line>
+                    <line x1="2" y1="10" x2="10" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"
+                        fill="none">
+                    </line>
+                </svg>
+                All stories
+            </button>
+        </a>
+    </nav>
+    <% let type=item?.chartType[0]; let bgColor, textColor, symbolId, vBox; if(type==="bar" ){ bgColor="bg-[#b1b1bd]" ;
+        borderColor="border-[#6560a6]" ; textColor="text-[#6560a6]" ; } else if(type==="line" ){ bgColor="bg-[#a9b8b2]"
+        ; borderColor="border-[#207a5e]" ; textColor="text-[#207a5e]" ; }else if(type==="pie" ){ bgColor="bg-[#bab2a4]"
+        ; borderColor="border-[#8f5d1b]" ; textColor="text-[#8f5d1b]" ; } %>
+        <section class="w-full h-auto bg-black p-8">
+            <button class="px-3 <%= bgColor %> <%= textColor %> tracking-wide font-semibold rounded-md capitalize">
+                <%= type%> chart
+            </button>
+            <h1 class="font-bold tracking-wider text-2xl mt-4 line-clamp-1">
+                <%= item.title%>
+            </h1>
+            <div class="<%= bgColor %> w-40 h-0.5 rounded-full my-2"></div>
+            <h3 class="font-semibold text-white/50 px-2 border-l-2 <%= borderColor %> line-clamp-1">
+                <%=item.insight%>
+            </h3>
+            <!-- data count -->
+            <div class="flex flex-row w-full gap-8 mt-6 items-center justify-evenly">
+                <% const values=item.info.map(d=> d.value); %>
+                    <div
+                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem]">
+                            <%= values.length %>
+                        </h1>
+                        <h3 class="text-white/50 font-semibold">Categories</h3>
+                    </div>
+                    <div
+                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem]">
+                            <%= Math.max(...values) %>
+                                <%= item.unit %>
+                        </h1>
+                        <h3 class="text-white/50 font-semibold">Highest</h3>
+                    </div>
+                    <div
+                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem]">
+                            <%= Math.min(...values) %>
+                                <%= item.unit %>
+                        </h1>
+                        <h3 class="text-white/50 font-semibold">Lowest</h3>
+                    </div>
+                    <div
+                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem]">
+                            <%= values.reduce((acc, curr)=> acc + curr, 0) %> <%= item.unit %>
+                        </h1>
+                        <h3 class="text-white/50 font-semibold">Total</h3>
+                    </div>
+            </div>
+            <!-- chart div -->
+            <div class="w-full h-120 p-6 bg-[#2e2e2c] my-10 rounded-xl border border-white/20">
+                <% let active=item.chartType[0]; %>
+                    <div class="flex flex-row gap-2">
+                        <button id="chartBtn" onclick="changeChart('bar')"
+                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'bar' ? 'bg-black' : 'bg-transparent' %>"
+                            data-type="bar">
+                            <svg width="20" height="20" viewBox="0 0 20 20">
+                                <line x1="4" y1="18" x2="4" y2="12" stroke="white" stroke-linecap="round"
+                                    stroke-width="4"></line>
+                                <line x1="10" y1="18" x2="10" y2="8" stroke="white" stroke-linecap="round"
+                                    stroke-width="4">
+                                </line>
+                                <line x1="16" y1="18" x2="16" y2="4" stroke="white" stroke-linecap="round"
+                                    stroke-width="4">
+                                </line>
+                            </svg>
+                            Bar
+                        </button>
+                        <button id="chartBtn" onclick="changeChart('line')"
+                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'line' ? 'bg-black' : 'bg-transparent' %>"
+                            data-type="line">
+                            <svg width="20" height="20" viewBox="0 0 20 20">
+                                <polyline points="2,18 5,10 9,14 13,8 17,13" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" fill="none" stroke-linejoin="round"></polyline>
+                            </svg>
+                            Line
+                        </button>
+                        <button id="chartBtn" onclick="changeChart('pie')"
+                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'pie' ? 'bg-black' : 'bg-transparent' %>"
+                            data-type="pie">
+                            <svg class="bg-white rounded-full" width="20" height="20" viewBox="0 0 20 20">
+                                <circle cx="10" cy="10" r="3.7" fill="none" stroke="#2e2e2c" stroke-dasharray="18 20"
+                                    stroke-width="8"></circle>
+                            </svg>
+                            Pie
+                        </button>
+                    </div>
+            </div>
+            <div class="flex flex-row gap-4">
+                <button
+                    class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">
+                    <svg width="15" height="15" viewBox="0 0 20 20">
+                        <line x1="3" y1="9" x2="6" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"
+                            fill="none">
+                        </line>
+                        <line x1="3" y1="10" x2="0" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"
+                            fill="none">
+                        </line>
+                        <circle cx="10" cy="10" r="8" stroke="white" stroke-width="2" stroke-dasharray="45 5"
+                            stroke-dashoffset="18" fill="none"></circle>
+                    </svg>
+                    Replay animation
+                </button>
+                <% let nextId=(Number(item.id) < data.length) ? Number(item.id) + 1 : 1; %>
+                    <a href="/infographic/<%= nextId %>">
+                        <button
+                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">Next
+                            story
+                            <svg width="10" height="10" viewBox="0 0 20 20">
+                                <line x1="16" y1="10" x2="6" y2="2" stroke="white" stroke-width="4"
+                                    stroke-linecap="round" fill="none">
+                                </line>
+                                <line x1="16" y1="10" x2="6" y2="18" stroke="white" stroke-width="4"
+                                    stroke-linecap="round" fill="none">
+                                </line>
+                            </svg>
+                        </button>
+                    </a>
+            </div>
+        </section>
+</body>
+
+</html>

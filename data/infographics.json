@@ -1,8 +1,8 @@
 [
     {
-        "id": "01",
+        "id": "1",
         "title": "Weekly Study Hours",
-        "insight": "Students study the most on Wednesdays and drop off sharply towards the weekend",
+        "insight": "Students study the most on Wednesdays and drop off sharply towards the weekend.",
         "chartType": [
             "bar",
             "line",
@@ -41,9 +41,9 @@
         ]
     },
     {
-        "id": "02",
+        "id": "2",
         "title": "Monthly Rainfall in Islamabad",
-        "insight": "July and August receive the heaviest rainfall during monsoon season",
+        "insight": "July and August receive the heaviest rainfall during monsoon season.",
         "chartType": [
             "line",
             "pie",
@@ -102,9 +102,9 @@
         ]
     },
     {
-        "id": "03",
+        "id": "3",
         "title": "Daily Screen Time Breakdown",
-        "insight": "Social media dominates daily screen time, taking up nearly half of all usage",
+        "insight": "Social media dominates daily screen time, taking up nearly half of all usage.",
         "chartType": [
             "pie",
             "bar",
@@ -135,9 +135,9 @@
         ]
     },
     {
-        "id": "04",
+        "id": "4",
         "title": "Gym Traffic by Time",
-        "insight": "Peak hours are between 5 PM and 8 PM, with a significant morning rush at 7 AM",
+        "insight": "Peak hours are between 5 PM and 8 PM, with a significant morning rush at 7 AM.",
         "chartType": [
             "line",
             "pie",
@@ -176,9 +176,9 @@
         ]
     },
     {
-        "id": "05",
+        "id": "5",
         "title": "Stock Portfolio Growth",
-        "insight": "Consistent growth was observed in Q3 due to heavy investment in tech stocks",
+        "insight": "Consistent growth was observed in Q3 due to heavy investment in tech stocks.",
         "chartType": [
             "pie",
             "bar",
@@ -205,9 +205,9 @@
         ]
     },
     {
-        "id": "06",
+        "id": "6",
         "title": "Waste Composition",
-        "insight": "Organic waste makes up more than half of the total household garbage",
+        "insight": "Organic waste makes up more than half of the total household garbage.",
         "chartType": [
             "bar",
             "line",
@@ -238,9 +238,9 @@
         ]
     },
     {
-        "id": "07",
+        "id": "7",
         "title": "Coffee Sales by Day",
-        "insight": "Sales peak on Monday mornings and gradually decline as the week progresses",
+        "insight": "Sales peak on Monday mornings and gradually decline as the week progresses.",
         "chartType": [
             "pie",
             "bar",
@@ -271,9 +271,9 @@
         ]
     },
     {
-        "id": "08",
+        "id": "8",
         "title": "Remote Work Productivity",
-        "insight": "Highest efficiency is reported between 10 AM and 12 PM across all departments",
+        "insight": "Highest efficiency is reported between 10 AM and 12 PM across all departments.",
         "chartType": [
             "bar",
             "line",
@@ -304,9 +304,9 @@
         ]
     },
     {
-        "id": "09",
+        "id": "9",
         "title": "Smartphone Market Share",
-        "insight": "Premium segment brands hold the largest share of total revenue despite lower volume",
+        "insight": "Premium segment brands hold the largest share of total revenue despite lower volume.",
         "chartType": [
             "line",
             "pie",

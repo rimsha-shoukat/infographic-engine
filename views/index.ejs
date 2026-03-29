@@ -128,30 +128,30 @@
             </symbol>
         </svg>
 
-        <div id="stories" class="flex flex-row items-start justify-between flex-wrap mt-6">
+        <div id="stories" class="flex flex-row items-start justify-evenly flex-wrap mt-6">
             <% data.forEach(item=> {
                 <!-- logic to pic style -->
                 let type = item.chartType[0];
                 let bgColor, textColor, symbolId, vBox;
                 if(type === "bar"){
-                bgColor = "#b1b1bd"; textColor = "#6560a6"; symbolId = "#barChart"; vBox = "0 0 180 160";
+                bgColor = "bg-[#b1b1bd]"; textColor = "text-[#6560a6]"; symbolId = "#barChart"; vBox = "0 0 180 160";
                 } else if(type === "line"){
-                bgColor = "#a9b8b2"; textColor = "#207a5e"; symbolId = "#lineChart"; vBox = "0 0 180 160";
+                bgColor = "bg-[#a9b8b2]"; textColor = "text-[#207a5e]"; symbolId = "#lineChart"; vBox = "0 0 180 160";
                 }else if(type === "pie"){
-                bgColor = "#bab2a4"; textColor = "#8f5d1b"; symbolId = "#pieChart"; vBox = "0 0 110 60";
+                bgColor = "bg-[#bab2a4]"; textColor = "text-[#8f5d1b]"; symbolId = "#pieChart"; vBox = "0 0 110 60";
                 } %>
 
                 <div id="storyCard"
                     class="flex flex-col bg-[#2e2e2c] w-92 h-auto border border-white/40 rounded-xl mb-4"
                     data-type="<%= item.chartType[0] %>">
                     <!-- Dynamic ViewBox and Background -->
-                    <svg width="100%" height="180" viewBox="<%= vBox %>" class="rounded-t-xl bg-[<%= bgColor %>]">
+                    <svg width="100%" height="180" viewBox="<%= vBox %>" class="rounded-t-xl <%= bgColor %>">
                         <use href="<%= symbolId %>"></use>
                     </svg>
 
                     <div class="w-full h-50 p-5">
                         <button
-                            class="px-3 bg-[<%= bgColor %>] text-[<%= textColor %>] tracking-wide font-semibold rounded-md capitalize">
+                            class="px-3 <%= bgColor %> <%= textColor %> tracking-wide font-semibold rounded-md capitalize">
                             <%= type %> chart
                         </button>
 
@@ -184,7 +184,7 @@
         </div>
     </section>
     <!-- data count -->
-    <footer class="flex flex-row items-center justify-between px-8 bg-black pb-6">
+    <footer class="flex flex-row items-center justify-evenly flex-wrap px-8 bg-black pb-6">
         <div class="flex flex-col w-92 items-center justify-center p-4 rounded-xl bg-[#2e2e2c]">
             <h1 class="font-semibold text-[1.5rem]">
                 <%= data.length %>
