@@ -3,51 +3,135 @@
         "id": "01",
         "title": "Weekly Study Hours",
         "insight": "Students study the most on Wednesdays and drop off sharply towards the weekend",
-        "chartType": ["bar", "line", "pie"],
+        "chartType": [
+            "bar",
+            "line",
+            "pie"
+        ],
         "unit": "hours",
         "info": [
-            { "label": "Monday", "value": 3 },
-            { "label": "Tuesday", "value": 4 },
-            { "label": "Wednesday", "value": 6 },
-            { "label": "Thursday", "value": 5 },
-            { "label": "Friday", "value": 2 },
-            { "label": "Saturday", "value": 1 },
-            { "label": "Sunday", "value": 2 }
+            {
+                "label": "Monday",
+                "value": 3
+            },
+            {
+                "label": "Tuesday",
+                "value": 4
+            },
+            {
+                "label": "Wednesday",
+                "value": 6
+            },
+            {
+                "label": "Thursday",
+                "value": 5
+            },
+            {
+                "label": "Friday",
+                "value": 2
+            },
+            {
+                "label": "Saturday",
+                "value": 1
+            },
+            {
+                "label": "Sunday",
+                "value": 2
+            }
         ]
     },
     {
         "id": "02",
         "title": "Monthly Rainfall in Islamabad",
         "insight": "July and August receive the heaviest rainfall during monsoon season",
-        "chartType": ["bar", "line", "pie"],
+        "chartType": [
+            "line",
+            "pie",
+            "bar"
+        ],
         "unit": "mm",
         "info": [
-            { "label": "Jan", "value": 12 },
-            { "label": "Feb", "value": 18 },
-            { "label": "Mar", "value": 30 },
-            { "label": "Apr", "value": 25 },
-            { "label": "May", "value": 20 },
-            { "label": "Jun", "value": 45 },
-            { "label": "Jul", "value": 180 },
-            { "label": "Aug", "value": 160 },
-            { "label": "Sep", "value": 60 },
-            { "label": "Oct", "value": 15 },
-            { "label": "Nov", "value": 8 },
-            { "label": "Dec", "value": 10 }
+            {
+                "label": "Jan",
+                "value": 12
+            },
+            {
+                "label": "Feb",
+                "value": 18
+            },
+            {
+                "label": "Mar",
+                "value": 30
+            },
+            {
+                "label": "Apr",
+                "value": 25
+            },
+            {
+                "label": "May",
+                "value": 20
+            },
+            {
+                "label": "Jun",
+                "value": 45
+            },
+            {
+                "label": "Jul",
+                "value": 180
+            },
+            {
+                "label": "Aug",
+                "value": 160
+            },
+            {
+                "label": "Sep",
+                "value": 60
+            },
+            {
+                "label": "Oct",
+                "value": 15
+            },
+            {
+                "label": "Nov",
+                "value": 8
+            },
+            {
+                "label": "Dec",
+                "value": 10
+            }
         ]
     },
     {
         "id": "03",
         "title": "Daily Screen Time Breakdown",
         "insight": "Social media dominates daily screen time, taking up nearly half of all usage",
-        "chartType": ["bar", "line", "pie"],
+        "chartType": [
+            "pie",
+            "bar",
+            "line"
+        ],
         "unit": "minutes",
         "info": [
-            { "label": "Social Media", "value": 110 },
-            { "label": "Study / Work", "value": 90 },
-            { "label": "Streaming", "value": 60 },
-            { "label": "Gaming", "value": 40 },
-            { "label": "Reading", "value": 20 }
+            {
+                "label": "Social Media",
+                "value": 110
+            },
+            {
+                "label": "Study / Work",
+                "value": 90
+            },
+            {
+                "label": "Streaming",
+                "value": 60
+            },
+            {
+                "label": "Gaming",
+                "value": 40
+            },
+            {
+                "label": "Reading",
+                "value": 20
+            }
         ]
     }
 ]
