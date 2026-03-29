@@ -133,5 +133,203 @@
                 "value": 20
             }
         ]
+    },
+    {
+        "id": "04",
+        "title": "Gym Traffic by Time",
+        "insight": "Peak hours are between 5 PM and 8 PM, with a significant morning rush at 7 AM",
+        "chartType": [
+            "line",
+            "pie",
+            "bar"
+        ],
+        "unit": "people",
+        "info": [
+            {
+                "label": "6 AM",
+                "value": 15
+            },
+            {
+                "label": "7 AM",
+                "value": 45
+            },
+            {
+                "label": "9 AM",
+                "value": 20
+            },
+            {
+                "label": "12 PM",
+                "value": 25
+            },
+            {
+                "label": "5 PM",
+                "value": 85
+            },
+            {
+                "label": "7 PM",
+                "value": 95
+            },
+            {
+                "label": "10 PM",
+                "value": 30
+            }
+        ]
+    },
+    {
+        "id": "05",
+        "title": "Stock Portfolio Growth",
+        "insight": "Consistent growth was observed in Q3 due to heavy investment in tech stocks",
+        "chartType": [
+            "pie",
+            "bar",
+            "line"
+        ],
+        "unit": "USD",
+        "info": [
+            {
+                "label": "Q1",
+                "value": 5000
+            },
+            {
+                "label": "Q2",
+                "value": 5800
+            },
+            {
+                "label": "Q3",
+                "value": 8200
+            },
+            {
+                "label": "Q4",
+                "value": 7900
+            }
+        ]
+    },
+    {
+        "id": "06",
+        "title": "Waste Composition",
+        "insight": "Organic waste makes up more than half of the total household garbage",
+        "chartType": [
+            "bar",
+            "line",
+            "pie"
+        ],
+        "unit": "kg",
+        "info": [
+            {
+                "label": "Organic",
+                "value": 40
+            },
+            {
+                "label": "Plastic",
+                "value": 15
+            },
+            {
+                "label": "Paper",
+                "value": 10
+            },
+            {
+                "label": "Glass",
+                "value": 5
+            },
+            {
+                "label": "Metal",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "id": "07",
+        "title": "Coffee Sales by Day",
+        "insight": "Sales peak on Monday mornings and gradually decline as the week progresses",
+        "chartType": [
+            "pie",
+            "bar",
+            "line"
+        ],
+        "unit": "cups",
+        "info": [
+            {
+                "label": "Mon",
+                "value": 140
+            },
+            {
+                "label": "Tue",
+                "value": 110
+            },
+            {
+                "label": "Wed",
+                "value": 105
+            },
+            {
+                "label": "Thu",
+                "value": 95
+            },
+            {
+                "label": "Fri",
+                "value": 80
+            }
+        ]
+    },
+    {
+        "id": "08",
+        "title": "Remote Work Productivity",
+        "insight": "Highest efficiency is reported between 10 AM and 12 PM across all departments",
+        "chartType": [
+            "bar",
+            "line",
+            "pie"
+        ],
+        "unit": "%",
+        "info": [
+            {
+                "label": "8 AM",
+                "value": 65
+            },
+            {
+                "label": "10 AM",
+                "value": 92
+            },
+            {
+                "label": "12 PM",
+                "value": 88
+            },
+            {
+                "label": "2 PM",
+                "value": 70
+            },
+            {
+                "label": "4 PM",
+                "value": 55
+            }
+        ]
+    },
+    {
+        "id": "09",
+        "title": "Smartphone Market Share",
+        "insight": "Premium segment brands hold the largest share of total revenue despite lower volume",
+        "chartType": [
+            "line",
+            "pie",
+            "bar"
+        ],
+        "unit": "%",
+        "info": [
+            {
+                "label": "Brand A",
+                "value": 45
+            },
+            {
+                "label": "Brand B",
+                "value": 30
+            },
+            {
+                "label": "Brand C",
+                "value": 15
+            },
+            {
+                "label": "Others",
+                "value": 10
+            }
+        ]
     }
 ]
