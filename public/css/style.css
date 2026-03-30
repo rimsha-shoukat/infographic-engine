@@ -7,8 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-900: oklch(39.6% 0.141 25.723);
-    --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -182,11 +180,17 @@
   }
 }
 @layer utilities {
-  .start {
-    inset-inline-start: var(--spacing);
+  .end {
+    inset-inline-end: var(--spacing);
+  }
+  .my-1 {
+    margin-block: calc(var(--spacing) * 1);
   }
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
+  }
+  .my-6 {
+    margin-block: calc(var(--spacing) * 6);
   }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
@@ -209,9 +213,6 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
-  .mb-6 {
-    margin-bottom: calc(var(--spacing) * 6);
-  }
   .line-clamp-1 {
     overflow: hidden;
     display: -webkit-box;
@@ -229,9 +230,6 @@
   }
   .flex {
     display: flex;
-  }
-  .grid {
-    display: grid;
   }
   .hidden {
     display: none;
@@ -260,23 +258,20 @@
   .h-140 {
     height: calc(var(--spacing) * 140);
   }
-  .h-150 {
-    height: calc(var(--spacing) * 150);
+  .h-\[1\] {
+    height: 1;
   }
-  .h-\[4\] {
-    height: 4;
+  .h-\[10\] {
+    height: 10;
   }
-  .h-\[40\] {
-    height: 40;
+  .h-\[100\%\] {
+    height: 100%;
   }
-  .h-\[40p\] {
-    height: 40p;
+  .h-\[100\] {
+    height: 100;
   }
-  .h-\[40px\] {
-    height: 40px;
-  }
-  .h-\[auto\] {
-    height: auto;
+  .h-\[full\] {
+    height: full;
   }
   .h-auto {
     height: auto;
@@ -284,29 +279,17 @@
   .h-full {
     height: 100%;
   }
-  .w-9 {
-    width: calc(var(--spacing) * 9);
-  }
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
-  .w-90 {
-    width: calc(var(--spacing) * 90);
-  }
   .w-92 {
     width: calc(var(--spacing) * 92);
-  }
-  .w-\[9\] {
-    width: 9;
   }
   .w-\[50\%\] {
     width: 50%;
   }
   .w-\[90\%\] {
     width: 90%;
-  }
-  .w-\[90\] {
-    width: 90;
   }
   .w-auto {
     width: auto;
@@ -385,9 +368,17 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-1 {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
+  }
+  .border-4 {
+    border-style: var(--tw-border-style);
+    border-width: 4px;
   }
   .border-\[1\.5px\] {
     border-style: var(--tw-border-style);
@@ -470,9 +461,6 @@
   .fill-current {
     fill: currentcolor;
   }
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
-  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
@@ -487,9 +475,6 @@
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
-  }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
   }
   .p-14 {
     padding: calc(var(--spacing) * 14);
