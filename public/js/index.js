@@ -14,7 +14,9 @@ function filterStories(type) {
 };
 
 function changeChart(type) {
+    console.log(type);
     const buttons = document.querySelectorAll("#chartBtn");
+    const charts = document.querySelectorAll("#typeCharts > div");
     buttons.forEach(btn => {
         if (btn.getAttribute("data-type") === type) {
             btn.classList.add("bg-black");
@@ -22,6 +24,16 @@ function changeChart(type) {
         } else {
             btn.classList.add("bg-transparent");
             btn.classList.remove("bg-black");
+        }
+    });
+    charts.forEach(chart => {
+        console.log(chart.getAttribute("data-type"), "===", type);
+        if (chart.getAttribute("data-type") === type) {
+            chart.classList.remove("hidden");
+            chart.classList.add("block");
+        } else {
+            chart.classList.remove("block");
+            chart.classList.add("hidden");
         }
     })
 };
