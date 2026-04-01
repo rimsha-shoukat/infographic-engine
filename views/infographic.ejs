@@ -40,6 +40,7 @@
         borderColor="border-[#6560a6]" ; textColor="text-[#6560a6]" ; } else if(type==="line" ){ bgColor="bg-[#a9b8b2]"
         ; borderColor="border-[#207a5e]" ; textColor="text-[#207a5e]" ; }else if(type==="pie" ){ bgColor="bg-[#bab2a4]"
         ; borderColor="border-[#8f5d1b]" ; textColor="text-[#8f5d1b]" ; } %>
+
         <section class="w-full h-auto bg-black p-8">
             <button class="px-3 <%= bgColor %> <%= textColor %> tracking-wide font-semibold rounded-md capitalize">
                 <%= type%> chart
@@ -86,10 +87,12 @@
                     </div>
             </div>
             <!-- chart div -->
-            <div class="w-full h-130 p-6 bg-[#2e2e2c] my-6 rounded-xl border border-white/20">
+            <div
+                class="w-full h-150 p-6 bg-[#2e2e2c] my-6 rounded-xl border flex flex-col items-start justify-between border-white/20">
                 <% let active=item.chartType[0]; %>
                     <div class="flex flex-row gap-2">
-                        <button id="chartBtn" onclick="changeChart('bar')"
+                        <button id="chartBtn"
+                            onclick="changeChart('bar'); document.querySelectorAll('#barSvg animate').forEach(a => a.beginElement())"
                             class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'bar' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="bar">
                             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -104,7 +107,8 @@
                             </svg>
                             Bar
                         </button>
-                        <button id="chartBtn" onclick="changeChart('line')"
+                        <button id="chartBtn"
+                            onclick="changeChart('line'); document.querySelectorAll('#lineSvg animate').forEach(a => a.beginElement())"
                             class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'line' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="line">
                             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -113,7 +117,8 @@
                             </svg>
                             Line
                         </button>
-                        <button id="chartBtn" onclick="changeChart('pie')"
+                        <button id="chartBtn"
+                            onclick="changeChart('pie'); document.querySelectorAll('#pieSvg animate').forEach(a => a.beginElement())"
                             class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'pie' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="pie">
                             <svg class="bg-white rounded-full" width="20" height="20" viewBox="0 0 20 20">
@@ -123,19 +128,20 @@
                             Pie
                         </button>
                     </div>
-                    <div id="typeCharts" class="flex mt-4 items-center justify-center w-full h-auto">
+                    <div id="typeCharts" class="flex mt-4 items-center justify-center w-full h-full">
                         <!-- graph accordingly -->
                         <% const vals=item.info.map(d=> d.value);
                             const maxVal = Math.max(...vals);
                             const chartH = 200; let gap; let startX; let colors; %>
 
                             <!-- bar -->
-                            <div data-type="bar" class="w-[90%] h-full <%= active === 'bar' ? 'block' : 'hidden' %>">
+                            <div data-type="bar"
+                                class="w-[90%] mt-8 h-full <%= active === 'bar' ? 'block' : 'hidden' %>">
                                 <% const barW=Math.min(60, Math.floor(520 / vals.length) - 20); gap=Math.floor(520 /
                                     vals.length); startX=80; %>
-                                    <svg width="100%" height="100%" viewBox="0 0 680 280">
+                                    <!-- <svg width="100%" height="100%" viewBox="0 0 680 280">
                                         <line x1="60" y1="30" x2="640" y2="30" stroke="rgba(255,255,255,0.06)"
-                                            stroke-width="1" />
+                                            stroke-width="" />
                                         <line x1="60" y1="80" x2="640" y2="80" stroke="rgba(255,255,255,0.06)"
                                             stroke-width="1" />
                                         <line x1="60" y1="130" x2="640" y2="130" stroke="rgba(255,255,255,0.06)"
@@ -153,8 +159,13 @@
                                                 const cx = x + barW / 2;
                                                 const color = colors[i % colors.length];
                                                 %>
-                                                <rect x="<%= x %>" y="<%= y %>" width="<%= barW %>" height="<%= barH %>"
-                                                    rx="4" fill="<%= color %>cc" />
+                                                <rect x="<%= x %>" y="<%= y %>" width="<%= barW %>" height="0" rx="4"
+                                                    fill="<%= color %>cc">
+                                                    <animate attributeName="height" from="0%" to="<%= barH %>" dur="1s"
+                                                        begin="chartBtn.click" fill="freeze" />
+                                                    <animate attributeName="y" from="230" to="<%= y %>" dur="1s"
+                                                        begin="chartBtn.click" fill="freeze" />
+                                                </rect>
                                                 <text x="<%= cx %>" y="<%= y - 8 %>" text-anchor="middle" font-size="12"
                                                     font-weight="700" fill="<%= color %>">
                                                     <%= d.value %>
@@ -164,20 +175,10 @@
                                                     fill="#aaa">
                                                     <%= d.label %>
                                                 </text>
+
                                                 <% }) %>
-                                    </svg>
-                            </div>
-                            <!-- line -->
-                            <div data-type="line" class="w-[90%] h-full <%= active === 'line' ? 'block' : 'hidden' %>">
-                                <% gap=Math.floor(520 / (item.info.length - 1)); startX=110; const
-                                    points=item.info.map((d, i)=> {
-                                    const x = startX + i * gap;
-                                    const y = 230 - Math.round((d.value / maxVal) * chartH);
-                                    return { x, y, label: d.label, value: d.value };
-                                    });
-                                    const polyPts = points.map(p => p.x + ',' + p.y).join(' ');
-                                    %>
-                                    <svg width="100%" viewBox="0 0 680 280">
+                                    </svg> -->
+                                    <svg id="barSvg" width="100%" height="100%" viewBox="0 0 680 280">
                                         <line x1="60" y1="30" x2="640" y2="30" stroke="rgba(255,255,255,0.06)"
                                             stroke-width="1" />
                                         <line x1="60" y1="80" x2="640" y2="80" stroke="rgba(255,255,255,0.06)"
@@ -188,21 +189,112 @@
                                             stroke-width="1" />
                                         <line x1="60" y1="230" x2="640" y2="230" stroke="rgba(255,255,255,0.12)"
                                             stroke-width="1" />
-                                        <polyline points="<%- polyPts %>" fill="none" stroke="#7f77dd"
-                                            stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-                                        <% points.forEach(p=> { %>
-                                            <circle cx="<%= p.x %>" cy="<%= p.y %>" r="6" fill="#7f77dd" />
-                                            <text x="<%= p.x %>" y="<%= p.y - 12 %>" text-anchor="middle" font-size="12"
-                                                font-weight="700" fill="#7f77dd">
-                                                <%= p.value %>
-                                                    <%= item.unit %>
-                                            </text>
-                                            <text x="<%= p.x %>" y="248" text-anchor="middle" font-size="12"
-                                                fill="#aaa">
-                                                <%= p.label %>
-                                            </text>
-                                            <% }) %>
+
+                                        <% colors=['#7f77dd','#1d9e75','#d85a30','#ba7517','#888780','#3266ad','#639922'];
+                                            %>
+                                            <% item.info.forEach((d, i)=> {
+                                                const barH = Math.round((d.value / maxVal) * chartH);
+                                                const x = startX + i * gap;
+                                                const y = 230 - barH;
+                                                const cx = x + barW / 2;
+                                                const color = colors[i % colors.length];
+                                                const delay = i * 0.1 + 's';
+                                                %>
+                                                <!-- bar grows up -->
+                                                <rect x="<%= cx - barW/2 %>" y="230" width="<%= barW %>" height="0"
+                                                    rx="4" fill="<%= color %>cc">
+                                                    <animate attributeName="height" from="0" to="<%= barH %>" dur="0.8s"
+                                                        begin="<%= delay %>" fill="freeze" calcMode="spline"
+                                                        keySplines="0 0 0.2 1" keyTimes="0;1" />
+                                                    <animate attributeName="y" from="230" to="<%= y %>" dur="0.8s"
+                                                        begin="<%= delay %>" fill="freeze" calcMode="spline"
+                                                        keySplines="0 0 0.2 1" keyTimes="0;1" />
+                                                </rect>
+
+                                                <!-- value label fades in after bar -->
+                                                <text x="<%= cx %>" y="<%= y - 8 %>" text-anchor="middle" font-size="12"
+                                                    font-weight="700" fill="<%= color %>" opacity="0">
+                                                    <%= d.value %>
+                                                        <%= item.unit %>
+                                                            <animate attributeName="opacity" from="0" to="1" dur="0.3s"
+                                                                begin="<%= (i * 0.1 + 0.7) + 's' %>" fill="freeze" />
+                                                </text>
+
+                                                <!-- label fades in same time as value -->
+                                                <text x="<%= cx %>" y="248" text-anchor="middle" font-size="12"
+                                                    fill="#aaa" opacity="0">
+                                                    <%= d.label %>
+                                                        <animate attributeName="opacity" from="0" to="1" dur="0.3s"
+                                                            begin="<%= (i * 0.1 + 0.7) + 's' %>" fill="freeze" />
+                                                </text>
+                                                <% }) %>
                                     </svg>
+                            </div>
+                            <!-- line -->
+                            <div data-type="line"
+                                class="w-[90%] mt-8 h-full <%= active === 'line' ? 'block' : 'hidden' %>">
+                                <% gap=Math.floor(520 / (item.info.length - 1)); startX=110; const
+                                    points=item.info.map((d, i)=> {
+                                    const x = startX + i * gap;
+                                    const y = 230 - Math.round((d.value / maxVal) * chartH);
+                                    return { x, y, label: d.label, value: d.value };
+                                    });
+                                    const polyPts = points.map(p => p.x + ',' + p.y).join(' ');
+
+                                    let lineLen = 0;
+                                    for (let i = 1; i < points.length; i++) { const dx=points[i].x - points[i-1].x;
+                                        const dy=points[i].y - points[i-1].y; lineLen +=Math.sqrt(dx*dx + dy*dy); } %>
+                                        <svg id="lineSvg" width="100%" viewBox="0 0 680 280">
+                                            <line x1="60" y1="30" x2="640" y2="30" stroke="rgba(255,255,255,0.06)"
+                                                stroke-width="1" />
+                                            <line x1="60" y1="80" x2="640" y2="80" stroke="rgba(255,255,255,0.06)"
+                                                stroke-width="1" />
+                                            <line x1="60" y1="130" x2="640" y2="130" stroke="rgba(255,255,255,0.06)"
+                                                stroke-width="1" />
+                                            <line x1="60" y1="180" x2="640" y2="180" stroke="rgba(255,255,255,0.06)"
+                                                stroke-width="1" />
+                                            <line x1="60" y1="230" x2="640" y2="230" stroke="rgba(255,255,255,0.12)"
+                                                stroke-width="1" />
+
+                                            <polyline points="<%- polyPts %>" fill="none" stroke="#7f77dd"
+                                                stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                                                stroke-dasharray="<%= lineLen %>" stroke-dashoffset="<%= lineLen %>">
+                                                <animate attributeName="stroke-dashoffset" from="<%= lineLen %>" to="0"
+                                                    dur="1.2s" begin="0s" fill="freeze" calcMode="spline"
+                                                    keySplines="0.4 0 0.2 1" keyTimes="0;1" />
+                                            </polyline>
+
+                                            <% points.forEach((p, i)=> {
+                                                const dotDelay = (i * (1.2 / points.length)).toFixed(2) + 's';
+                                                const textDelay = (i * (1.2 / points.length) + 0.15).toFixed(2) + 's';
+                                                %>
+                                                <circle cx="<%= p.x %>" cy="<%= p.y %>" r="0" fill="#7f77dd">
+                                                    <animate attributeName="r" from="0" to="6" dur="0.25s"
+                                                        begin="<%= dotDelay %>" fill="freeze" calcMode="spline"
+                                                        keySplines="0.2 0 0.2 1.4" keyTimes="0;1" />
+                                                </circle>
+                                                <circle cx="<%= p.x %>" cy="<%= p.y %>" r="6" fill="#7f77dd"
+                                                    opacity="0">
+                                                    <animate attributeName="opacity" from="0" to="1" dur="0.25s"
+                                                        begin="<%= dotDelay %>" fill="freeze" />
+                                                </circle>
+
+                                                <text x="<%= p.x %>" y="<%= p.y - 12 %>" text-anchor="middle"
+                                                    font-size="12" font-weight="700" fill="#7f77dd" opacity="0">
+                                                    <%= p.value %>
+                                                        <%= item.unit %>
+                                                            <animate attributeName="opacity" from="0" to="1" dur="0.2s"
+                                                                begin="<%= textDelay %>" fill="freeze" />
+                                                </text>
+
+                                                <text x="<%= p.x %>" y="248" text-anchor="middle" font-size="12"
+                                                    fill="#aaa" opacity="0">
+                                                    <%= p.label %>
+                                                        <animate attributeName="opacity" from="0" to="1" dur="0.2s"
+                                                            begin="<%= dotDelay %>" fill="freeze" />
+                                                </text>
+                                                <% }) %>
+                                        </svg>
                             </div>
                             <!-- pie -->
                             <div data-type="pie" class="w-[90%] h-full <%= active === 'pie' ? 'block' : 'hidden' %>">
@@ -218,42 +310,76 @@
                                     value:
                                     d.value };
                                     }); %>
-                                    <svg width="100%" height="100%" viewBox="0 0 200 80">
-                                        <% slices.forEach(s=> { %>
+                                    <svg id="pieSvg" width="100%" height="100%" viewBox="0 0 200 115">
+                                        <% slices.forEach((s, i)=> {
+                                            const sliceDelay = (i * 0.15).toFixed(2) + 's';
+                                            %>
                                             <circle cx="80" cy="40" r="15.9" fill="none" stroke="<%= s.color %>"
-                                                stroke-width="12"
-                                                stroke-dasharray="<%= s.scaled.toFixed(1) %> <%= (100 - s.scaled).toFixed(1) %>"
+                                                stroke-width="18" stroke-dasharray="0 100"
                                                 stroke-dashoffset="<%= s.dashoffset.toFixed(1) %>">
                                                 <title>
                                                     <%= s.label %>: <%= s.value %>
                                                 </title>
+                                                <animate attributeName="stroke-dasharray" from="0 100"
+                                                    to="<%= s.scaled.toFixed(1) %> <%= (100 - s.scaled).toFixed(1) %>"
+                                                    dur="0.6s" begin="<%= sliceDelay %>" fill="freeze" calcMode="spline"
+                                                    keySplines="0.4 0 0.2 1" keyTimes="0;1" />
                                             </circle>
                                             <% }) %>
+
                                                 <text x="80" y="41" font-size="2" font-weight="700" fill="white"
-                                                    text-anchor="middle">
+                                                    text-anchor="middle" opacity="0">
                                                     <%= item.unit%>
+                                                        <animate attributeName="opacity" from="0" to="1" dur="0.3s"
+                                                            begin="<%= (slices.length * 0.15).toFixed(2) + 's' %>"
+                                                            fill="freeze" />
                                                 </text>
-                                                <% const lineHeight=50 / item.info.length; %>
+
+                                                <% const lineHeight=100 / item.info.length; %>
                                                     <% item.info.forEach((d, i)=> {
                                                         const y = i * lineHeight + lineHeight / 2;
+                                                        const legendDelay = (slices.length * 0.15 + i * 0.1).toFixed(2)
+                                                        + 's';
                                                         %>
-                                                        <rect x="130" y="<%= y+10 %>" width="4" height="4" rx="1"
-                                                            fill="<%= colors[i % colors.length] %>" />
-                                                        <text x="136" y="<%= y+13 %>" font-size="3" font-weight="700"
-                                                            fill="white">
+                                                        <rect x="130" y="<%= y %>" width="4" height="4" rx="1"
+                                                            fill="<%= colors[i % colors.length] %>" opacity="0">
+                                                            <animate attributeName="opacity" from="0" to="1" dur="0.2s"
+                                                                begin="<%= legendDelay %>" fill="freeze" />
+                                                        </rect>
+
+                                                        <text x="136" y="<%= y+3 %>" font-size="3" font-weight="700"
+                                                            fill="white" opacity="0">
                                                             <%= d.label %>
+                                                                <animate attributeName="opacity" from="0" to="1"
+                                                                    dur="0.2s" begin="<%= legendDelay %>"
+                                                                    fill="freeze" />
                                                         </text>
-                                                        <text x="170" y="<%= y+13 %>" font-size="3" font-weight="700"
-                                                            fill="white" text-anchor="end">
+
+                                                        <text x="180" y="<%= y+3 %>" font-size="3" font-weight="700"
+                                                            fill="white" text-anchor="end" opacity="0">
                                                             <%= d.value %>
                                                                 <%= item.unit%>
+                                                                    <animate attributeName="opacity" from="0" to="1"
+                                                                        dur="0.2s" begin="<%= legendDelay %>"
+                                                                        fill="freeze" />
                                                         </text>
-                                                        <line x1="130" x2="170" y1="<%= y+15 %>" y2="<%= y+15 %>"
-                                                            stroke="white" stroke-width="1" stroke-linecap="round" />
-                                                        <line x1="130" x2="<%= 130 + ((d.value / maxVal) * 40) %>"
-                                                            y1="<%= y+15 %>" y2="<%= y+15 %>"
+
+                                                        <line x1="130" x2="180" y1="<%= y+5 %>" y2="<%= y+5 %>"
+                                                            stroke="white" stroke-width="1" stroke-linecap="round"
+                                                            opacity="0">
+                                                            <animate attributeName="opacity" from="0" to="1" dur="0.2s"
+                                                                begin="<%= legendDelay %>" fill="freeze" />
+                                                        </line>
+
+                                                        <line x1="130" x2="130" y1="<%= y+5 %>" y2="<%= y+5 %>"
                                                             stroke="<%= colors[i % colors.length] %>" stroke-width="1"
-                                                            stroke-linecap="round" />
+                                                            stroke-linecap="round">
+                                                            <animate attributeName="x2" from="130"
+                                                                to="<%= 130 + ((d.value / maxVal) * 40) %>" dur="0.4s"
+                                                                begin="<%= legendDelay %>" fill="freeze"
+                                                                calcMode="spline" keySplines="0.4 0 0.2 1"
+                                                                keyTimes="0;1" />
+                                                        </line>
                                                         <% }) %>
                                     </svg>
                             </div>
@@ -261,6 +387,7 @@
             </div>
             <div class="flex flex-row gap-4">
                 <button
+                    onclick="document.querySelectorAll('#barSvg animate').forEach(a => a.beginElement()); document.querySelectorAll('#lineSvg animate').forEach(a => a.beginElement()); document.querySelectorAll('#pieSvg animate').forEach(a => a.beginElement())"
                     class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">
                     <svg width="15" height="15" viewBox="0 0 20 20">
                         <line x1="3" y1="9" x2="6" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"
