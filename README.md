@@ -1,9 +1,15 @@
 # Infograph 📊
 A Data Storytelling Engine — animated charts built from scratch, no libraries.
 
+---
+
 ## What is Infograph?
 
 Infograph turns raw numbers into animated visual stories. You pick a dataset, and watch it come alive — smooth, colorful, interactive charts built entirely with SVG. No Chart.js. No D3. Just code.
+
+---
+
+### [view live on vercel](https://infographic-engine-topaz.vercel.app/)
 
 ---
 ## Features
