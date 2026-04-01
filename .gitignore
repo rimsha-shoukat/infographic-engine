@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Tailwind output (generated file)
+public/css/output.css
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
