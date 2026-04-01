@@ -68,7 +68,7 @@ Then open your browser and go to → `http://localhost:3000`
 
 **Rimsha**
 - GitHub: [@rimsha-shoukat](https://github.com/rimsha-shoukat)
-- LinkedIn: [rimsha-shoukat](https://www.linkedin.com/in/rimsha-shoukat/)
+- LinkedIn: [@rimsha-shoukat](https://www.linkedin.com/in/rimsha-shoukat/)
 
 ---
 
