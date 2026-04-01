@@ -11,7 +11,8 @@
 
 <body class="w-full h-auto bg-black">
     <!-- top navbar -->
-    <nav class="w-full h-auto flex flex-row items-center justify-between p-3 border-b border-b-white/50 bg-[#2e2e2c]">
+    <nav
+        class="w-full h-auto flex flex-row items-center justify-between px-4 py-2 border-b border-b-white/50 bg-[#2e2e2c]">
         <div class="flex flex-row gap-2 items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 20 20" class="fill-current">
                 <rect width="8" height="8" x="2" y="2" rx="2" ry="2" fill="#6963a6"></rect>
@@ -41,61 +42,64 @@
         ; borderColor="border-[#207a5e]" ; textColor="text-[#207a5e]" ; }else if(type==="pie" ){ bgColor="bg-[#bab2a4]"
         ; borderColor="border-[#8f5d1b]" ; textColor="text-[#8f5d1b]" ; } %>
 
-        <section class="w-full h-auto bg-black p-8">
-            <button class="px-3 <%= bgColor %> <%= textColor %> tracking-wide font-semibold rounded-md capitalize">
+        <section class="w-full h-auto bg-black p-8 max-[700px]:p-4">
+            <button
+                class="px-3 <%= bgColor %> max-[700px]:text-sm <%= textColor %> tracking-wide font-semibold rounded-md capitalize">
                 <%= type%> chart
             </button>
-            <h1 class="font-bold tracking-wider text-2xl mt-4 line-clamp-1">
+            <h1 class="font-bold tracking-wider text-2xl max-[700px]:text-xl max-[700px]:mt-2 mt-4 line-clamp-1">
                 <%= item.title %>
             </h1>
-            <div class="<%= bgColor %> w-40 h-0.5 rounded-full my-2"></div>
-            <h3 class="font-semibold text-white/50 px-2 border-l-2 <%= borderColor %> line-clamp-1">
+            <div class="<%= bgColor %> w-[20%] h-0.5 rounded-full my-2"></div>
+            <h3
+                class="font-semibold text-white/50 max-[700px]:text-xs max-[514px]:line-clamp-2 px-2 border-l-2 <%= borderColor %> line-clamp-1">
                 <%=item.insight%>
             </h3>
             <!-- data count -->
-            <div class="flex flex-row w-full gap-8 mt-6 items-center justify-evenly">
+            <div
+                class="flex flex-row w-full max-[700px]:gap-2 max-[400px]:flex-col gap-8 mt-6 items-center justify-evenly">
                 <% const values=item.info.map(d=> d.value); %>
                     <div
-                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
-                        <h1 class="font-semibold text-[1.5rem]">
+                        class="flex flex-col flex-1 max-[400px]:w-full items-center justify-center p-4  max-[700px]:p-2 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem] max-[700px]:md max-[510px]:text-sm">
                             <%= values.length %>
                         </h1>
-                        <h3 class="text-white/50 font-semibold">Categories</h3>
+                        <h3 class="text-white/50 font-semibold max-[700px]:text-xs">Categories</h3>
                     </div>
                     <div
-                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
-                        <h1 class="font-semibold text-[1.5rem]">
+                        class="flex flex-col flex-1 max-[400px]:w-full items-center max-[700px]:p-2 justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold max-[700px]:md text-[1.5rem] max-[510px]:text-sm">
                             <%= Math.max(...values) %>
                                 <%= item.unit %>
                         </h1>
-                        <h3 class="text-white/50 font-semibold">Highest</h3>
+                        <h3 class="text-white/50 max-[700px]:text-xs font-semibold">Highest</h3>
                     </div>
                     <div
-                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
-                        <h1 class="font-semibold text-[1.5rem]">
+                        class="flex flex-col flex-1 max-[700px]:p-2 max-[400px]:w-full items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold max-[700px]:text-md text-[1.5rem] max-[510px]:text-sm">
                             <%= Math.min(...values) %>
                                 <%= item.unit %>
                         </h1>
-                        <h3 class="text-white/50 font-semibold">Lowest</h3>
+                        <h3 class="text-white/50 max-[700px]:text-xs font-semibold">Lowest</h3>
                     </div>
                     <div
-                        class="flex flex-col flex-1 items-center justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
-                        <h1 class="font-semibold text-[1.5rem]">
+                        class="flex flex-col flex-1 max-[400px]:w-full items-center max-[700px]:p-2 justify-center p-4 rounded-xl  border border-white/20 bg-[#2e2e2c]">
+                        <h1 class="font-semibold text-[1.5rem] max-[700px]:text-md max-[510px]:text-sm">
                             <%= values.reduce((acc, curr)=> acc + curr, 0) %> <%= item.unit %>
                         </h1>
-                        <h3 class="text-white/50 font-semibold">Total</h3>
+                        <h3 class="text-white/50 font-semibold max-[700px]:text-xs">Total</h3>
                     </div>
             </div>
             <!-- chart div -->
             <div
-                class="w-full h-150 p-6 bg-[#2e2e2c] my-6 rounded-xl border flex flex-col items-start justify-between border-white/20">
+                class="w-full h-150 max-[800px]:h-100 max-[500px]:h-80 max-[400px]:h-60 p-6 bg-[#2e2e2c] my-6 max-[350px]:p-2 rounded-xl border flex flex-col items-start justify-between border-white/20">
                 <% let active=item.chartType[0]; %>
-                    <div class="flex flex-row gap-2">
+                    <div class="flex flex-row gap-2 max-[350px]:gap-1">
                         <button id="chartBtn"
                             onclick="changeChart('bar'); document.querySelectorAll('#barSvg animate').forEach(a => a.beginElement())"
-                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'bar' ? 'bg-black' : 'bg-transparent' %>"
+                            class="flex flex-row max-[350px]:px-2 max-[350px]:py-1 max-[350px]:text-xs items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'bar' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="bar">
-                            <svg width="20" height="20" viewBox="0 0 20 20">
+                            <svg width="20" height="20" class="max-[350px]:w-4 max-[350px]:h-4" viewBox="0 0 20 20">
                                 <line x1="4" y1="18" x2="4" y2="12" stroke="white" stroke-linecap="round"
                                     stroke-width="4"></line>
                                 <line x1="10" y1="18" x2="10" y2="8" stroke="white" stroke-linecap="round"
@@ -109,9 +113,9 @@
                         </button>
                         <button id="chartBtn"
                             onclick="changeChart('line'); document.querySelectorAll('#lineSvg animate').forEach(a => a.beginElement())"
-                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'line' ? 'bg-black' : 'bg-transparent' %>"
+                            class="flex flex-row items-center justify-center max-[350px]:px-2 max-[350px]:py-1 max-[350px]:text-xs gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'line' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="line">
-                            <svg width="20" height="20" viewBox="0 0 20 20">
+                            <svg width="20" height="20" class="max-[350px]:w-4 max-[350px]:h-4" viewBox="0 0 20 20">
                                 <polyline points="2,18 5,10 9,14 13,8 17,13" stroke="white" stroke-width="2"
                                     stroke-linecap="round" fill="none" stroke-linejoin="round"></polyline>
                             </svg>
@@ -119,9 +123,10 @@
                         </button>
                         <button id="chartBtn"
                             onclick="changeChart('pie'); document.querySelectorAll('#pieSvg animate').forEach(a => a.beginElement())"
-                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'pie' ? 'bg-black' : 'bg-transparent' %>"
+                            class="flex flex-row items-center justify-center gap-1 max-[350px]:px-2 max-[350px]:py-1 max-[350px]:text-xs px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm <%= active === 'pie' ? 'bg-black' : 'bg-transparent' %>"
                             data-type="pie">
-                            <svg class="bg-white rounded-full" width="20" height="20" viewBox="0 0 20 20">
+                            <svg class="bg-white rounded-full max-[350px]:w-4 max-[350px]:h-4" width="20" height="20"
+                                viewBox="0 0 20 20">
                                 <circle cx="10" cy="10" r="3.7" fill="none" stroke="#2e2e2c" stroke-dasharray="18 20"
                                     stroke-width="8"></circle>
                             </svg>
@@ -244,7 +249,7 @@
                                     let lineLen = 0;
                                     for (let i = 1; i < points.length; i++) { const dx=points[i].x - points[i-1].x;
                                         const dy=points[i].y - points[i-1].y; lineLen +=Math.sqrt(dx*dx + dy*dy); } %>
-                                        <svg id="lineSvg" width="100%" viewBox="0 0 680 280">
+                                        <svg id="lineSvg" width="100%" height="100%" viewBox="0 0 680 280">
                                             <line x1="60" y1="30" x2="640" y2="30" stroke="rgba(255,255,255,0.06)"
                                                 stroke-width="1" />
                                             <line x1="60" y1="80" x2="640" y2="80" stroke="rgba(255,255,255,0.06)"
@@ -388,7 +393,7 @@
             <div class="flex flex-row gap-4">
                 <button
                     onclick="document.querySelectorAll('#barSvg animate').forEach(a => a.beginElement()); document.querySelectorAll('#lineSvg animate').forEach(a => a.beginElement()); document.querySelectorAll('#pieSvg animate').forEach(a => a.beginElement())"
-                    class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">
+                    class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm max-[350px]:text-xs max-[350px]:px-2 max-[350px]:py-1">
                     <svg width="15" height="15" viewBox="0 0 20 20">
                         <line x1="3" y1="9" x2="6" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"
                             fill="none">
@@ -404,7 +409,7 @@
                 <% let nextId=(Number(item.id) < data.length) ? Number(item.id) + 1 : 1; %>
                     <a href="/infographic/<%= nextId %>">
                         <button
-                            class="flex flex-row items-center justify-center gap-1 px-4 py-2 text-sm font-semibold border border-white/50 rounded-sm">Next
+                            class="flex flex-row items-center justify-center max-[350px]:px-2 max-[350px]:py-1 gap-1 px-4 py-2 text-sm max-[350px]:text-xs font-semibold border border-white/50 rounded-sm">Next
                             story
                             <svg width="10" height="10" viewBox="0 0 20 20">
                                 <line x1="16" y1="10" x2="6" y2="2" stroke="white" stroke-width="4"

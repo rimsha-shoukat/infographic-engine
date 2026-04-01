@@ -11,7 +11,8 @@
 
 <body>
     <!-- top navbar -->
-    <nav class="w-full h-auto flex flex-row items-center justify-between p-3 border-b border-b-white/50 bg-[#2e2e2c]">
+    <nav
+        class="w-full h-auto flex flex-row items-center justify-between py-2 px-4 border-b border-b-white/50 bg-[#2e2e2c]">
         <div class="flex flex-row gap-2 items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 20 20" class="fill-current">
                 <rect width="8" height="8" x="2" y="2" rx="2" ry="2" fill="#6963a6"></rect>
@@ -28,20 +29,22 @@
     </nav>
     <!-- landing -->
     <section class="w-full h-auto flex flex-row items-center justify-between bg-[#2e2e2c]">
-        <div class="w-auto h-auto p-14">
+        <div class="w-auto h-auto p-14 max-[430px]:px-4 max-[430px]:py-8">
             <button
-                class="text-md rounded-md tracking-wider font-semibold py-1 px-3 bg-[#b2b1bd] text-[#5a5582] line-clamp-1">Data
+                class="text-md rounded-md tracking-wider font-semibold py-1 px-3 bg-[#b2b1bd] text-[#5a5582] line-clamp-1 max-[900px]:text-sm">Data
                 storytelling
                 engine</button>
-            <h1 class="text-[2.45rem] tracking-wide font-semibold line-clamp-1 my-2">Numbers that tell a story</h1>
-            <h3 class="line-clamp-2 text-white/50 text-[1.6rem] tracking-wide">Pick a dataset and watch it come
+            <h1 class="text-[2.45rem] tracking-wide font-semibold line-clamp-1 my-2 max-[900px]:text-[1.65rem]">Numbers
+                that tell a story</h1>
+            <h3 class="max-[900px]:text-sm line-clamp-2 text-white/50 text-[1.6rem] tracking-wide">Pick a dataset and
+                watch it come
                 alive --
                 animated
                 charts built from
                 scratch, no
                 libraries.</h3>
             <button onclick="scrollToStories()"
-                class="group transition-all duration-300 ease-in-out hover:bg-black/30 border-[1.5px] font-semibold tracking-wide border-white/50 rounded-lg px-6 py-2 mt-10 flex flex-row items-center justify-center">Explore
+                class="group transition-all duration-300 ease-in-out hover:bg-black/30 border-[1.5px] font-semibold tracking-wide border-white/50 rounded-lg px-6 py-2 mt-10 flex flex-row items-center justify-center max-[420px]:mt-6 max-[420px]:px-3  max-[420px]:py-1  max-[420px]:tracking-wide">Explore
                 stories
                 <svg class="group-hover:translate-x-2 transition-all duration-300 ease-in-out" width="22" height="20"
                     viewBox="0 0 22 20">
@@ -54,11 +57,9 @@
                 </svg>
             </button>
         </div>
-        <div class="w-[50%] h-auto flex items-center justify-center">
-            <svg width="20rem" height="15rem" viewBox="0 0 200 150">
+        <div class="w-[50%] max-[500px]:hidden h-auto max-[750px]:w-[40%] flex items-center justify-center">
+            <svg width="20rem" class="max-[750px]:w-40 max-[750px]:h-30" height="15rem" viewBox="0 0 200 150">
                 <line x1="11" y1="140" x2="160" y2="140" stroke="#666482" stroke-width="2" fill="none"></line>
-
-                <!-- bars grow up from baseline -->
                 <rect width="25" height="0" x="12" y="138" rx="5" ry="5" fill="#a4a3ad">
                     <animate attributeName="height" from="0" to="70" dur="1.2s" begin="0.1s" fill="freeze"
                         calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0;1" />
@@ -94,14 +95,12 @@
                         calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0;1" />
                 </rect>
 
-                <!-- line draws itself after bars are mostly done -->
                 <polyline points="24,68 55,53 86,36 115,63 146,48" stroke-width="2" stroke="#5e5999" fill="none"
                     stroke-dasharray="200" stroke-dashoffset="200">
                     <animate attributeName="stroke-dashoffset" from="200" to="0" dur="1.4s" begin="0.9s" fill="freeze"
                         calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0;1" />
                 </polyline>
 
-                <!-- dots pop in as line reaches each point -->
                 <circle cx="24" cy="68" r="4" fill="#5e5999" opacity="0">
                     <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.9s" fill="freeze" />
                 </circle>
@@ -120,11 +119,12 @@
             </svg>
         </div>
     </section>
+
     <!-- cards -->
-    <section class="bg-black p-8">
+    <section class="bg-black p-6">
         <div class="flex flex-row items-center justify-between">
-            <h2 class="font-semibold text-[1.2rem] tracking-wide">All stories</h2>
-            <div class="flex flex-row items-center justify-center gap-3 font-semibold">
+            <h2 class="font-semibold text-[1.2rem] tracking-wide max-[520px]:hidden">All stories</h2>
+            <div class="flex flex-row items-center justify-center gap-3 max-[420px]:gap-1 font-semibold">
                 <button onclick="filterStories('all')"
                     class="border-2 hover:bg-[#2e2e2c] transition-all duration-300 ease-in-out border-white/50 rounded-md px-4 py-1">All</button>
                 <button onclick="filterStories('bar')"
@@ -177,7 +177,7 @@
             </symbol>
         </svg>
 
-        <div id="stories" class="flex flex-row items-start justify-evenly flex-wrap mt-6">
+        <div id="stories" class="flex flex-row gap-2 items-start justify-evenly flex-wrap mt-6">
             <% data.forEach(item=> {
                 <!-- logic to pic style -->
                 let type = item.chartType[0];
@@ -191,7 +191,7 @@
                 } %>
 
                 <div id="storyCard"
-                    class="flex flex-col bg-[#2e2e2c] w-92 h-auto border border-white/40 rounded-xl mb-4"
+                    class="flex flex-col bg-[#2e2e2c] w-92 h-auto border border-white/40 rounded-xl mb-6"
                     data-type="<%= item.chartType[0] %>">
                     <!-- Dynamic ViewBox and Background -->
                     <svg width="100%" height="180" viewBox="<%= vBox %>" class="rounded-t-xl <%= bgColor %>">
@@ -233,22 +233,22 @@
         </div>
     </section>
     <!-- data count -->
-    <footer class="flex flex-row items-center justify-evenly flex-wrap px-8 bg-black pb-6">
-        <div class="flex flex-col w-92 items-center justify-center p-4 rounded-xl bg-[#2e2e2c]">
-            <h1 class="font-semibold text-[1.5rem]">
+    <footer class="flex max-[520px]:gap-2 flex-row gap-8 items-center justify-evenly flex-wrap px-6 bg-black pb-6">
+        <div class="flex flex-col flex-1 items-center justify-center p-4 max-[520px]:p-2 rounded-xl bg-[#2e2e2c]">
+            <h1 class="font-semibold max-[520px]:text-md text-[1.5rem]">
                 <%= data.length %>
             </h1>
-            <h3 class="text-white/50 font-semibold">Total stories</h3>
+            <h3 class="text-white/50 font-semibold max-[520px]:text-xs">Total stories</h3>
         </div>
-        <div class="flex flex-col w-92 items-center justify-center p-4 rounded-xl bg-[#2e2e2c]">
-            <h1 class="font-semibold text-[1.5rem]">3</h1>
-            <h3 class="text-white/50 font-semibold">Chart types</h3>
+        <div class="flex flex-col flex-1 items-center justify-center p-4 max-[520px]:p-2 rounded-xl bg-[#2e2e2c]">
+            <h1 class="font-semibold text-[1.5rem] max-[520px]:text-md">3</h1>
+            <h3 class="text-white/50 font-semibold max-[520px]:text-xs">Chart types</h3>
         </div>
-        <div class="flex flex-col w-92 items-center justify-center p-4 rounded-xl bg-[#2e2e2c]">
-            <h1 class="font-semibold text-[1.5rem]">
+        <div class="flex flex-col flex-1 items-center justify-center p-4 max-[520px]:p-2 rounded-xl bg-[#2e2e2c]">
+            <h1 class="font-semibold text-[1.5rem] max-[520px]:text-md">
                 <%= data.reduce((acc, curr)=> acc + (curr.info ? curr.info.length : 0), 0) %>
             </h1>
-            <h3 class="text-white/50 font-semibold">Data points</h3>
+            <h3 class="text-white/50 font-semibold max-[520px]:text-xs">Data points</h3>
         </div>
     </footer>
 </body>
